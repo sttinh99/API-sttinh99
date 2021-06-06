@@ -32,7 +32,8 @@ module.exports.register = async (req, res) => {
         res.cookie('refreshtoken', refreshtoken, {
             httpOnly: true,
             path: '/user/refresh_token',
-            maxAge: 7 * 24 * 60 * 60 * 1000 //7day
+            maxAge: 7 * 24 * 60 * 60 * 1000, //7day
+            SameSite=None
         })
 
         return res.status(200).json({ accesstoken })
@@ -55,7 +56,8 @@ module.exports.login = async (req, res) => {
         res.cookie('refreshtoken', refreshtoken, {
             httpOnly: true,
             path: '/user/refresh_token',
-            maxAge: 7 * 24 * 60 * 60 * 1000 //7day
+            maxAge: 7 * 24 * 60 * 60 * 1000, //7day
+            SameSite=None
         })
         return res.status(200).json({ accesstoken })
     } catch (error) {
