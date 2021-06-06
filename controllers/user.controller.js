@@ -31,7 +31,7 @@ module.exports.register = async (req, res) => {
 
         res.cookie('refreshtoken', refreshtoken, {
             httpOnly: true,
-            path: 'https://api-kltn.herokuapp.com/user/refresh_token',
+            domain: 'https://api-kltn.herokuapp.com/user/refresh_token',
             maxAge: 7 * 24 * 60 * 60 * 1000 //7day
         })
 
@@ -43,7 +43,7 @@ module.exports.register = async (req, res) => {
 module.exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
-        console.log(req.body, "asdasd");
+        //console.log(req.body, "asdasd");
         const user = await User.findOne({ email });
         if (!user) return res.status(400).json({ msg: "user doesn't exists" });
         if (user.isBlock === true) return res.status(400).json({ msg: "Your account has been locked" });
@@ -54,7 +54,7 @@ module.exports.login = async (req, res) => {
 
         res.cookie('refreshtoken', refreshtoken, {
             httpOnly: true,
-            path: '/user/refresh_token',
+            domain: 'https://api-kltn.herokuapp.com/user/refresh_token',
             maxAge: 7 * 24 * 60 * 60 * 1000 //7day
         })
         return res.status(200).json({ accesstoken })
@@ -81,7 +81,7 @@ module.exports.getUser = async (req, res) => {
 }
 module.exports.logout = async (req, res) => {
     try {
-        res.clearCookie('refreshtoken', { path: '/user/refresh_token' })
+        res.clearCookie('refreshtoken', { domain: 'https://api-kltn.herokuapp.com/user/refresh_token' })
         res.json({ msg: "Logged out" });
     } catch (error) {
         return res.status(500).json({ msg: error })
