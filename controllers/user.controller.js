@@ -43,7 +43,7 @@ module.exports.register = async (req, res) => {
 module.exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
-        //console.log(req.body, "asdasd");
+        console.log(req.body, "asdasd");
         const user = await User.findOne({ email });
         if (!user) return res.status(400).json({ msg: "user doesn't exists" });
         if (user.isBlock === true) return res.status(400).json({ msg: "Your account has been locked" });
