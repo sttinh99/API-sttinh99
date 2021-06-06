@@ -31,9 +31,8 @@ module.exports.register = async (req, res) => {
 
         res.cookie('refreshtoken', refreshtoken, {
             httpOnly: true,
-            path: '/user/refresh_token',
-            maxAge: 7 * 24 * 60 * 60 * 1000, //7day
-            SameSite=None
+            path: 'https://api-kltn.herokuapp.com/user/refresh_token',
+            maxAge: 7 * 24 * 60 * 60 * 1000 //7day
         })
 
         return res.status(200).json({ accesstoken })
@@ -56,8 +55,7 @@ module.exports.login = async (req, res) => {
         res.cookie('refreshtoken', refreshtoken, {
             httpOnly: true,
             path: '/user/refresh_token',
-            maxAge: 7 * 24 * 60 * 60 * 1000, //7day
-            SameSite=None
+            maxAge: 7 * 24 * 60 * 60 * 1000 //7day
         })
         return res.status(200).json({ accesstoken })
     } catch (error) {
