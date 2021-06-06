@@ -33,6 +33,7 @@ module.exports.register = async (req, res) => {
             httpOnly: true,
             domain: 'https://api-kltn.herokuapp.com',
             path: "/user/refresh_token",
+            proxy: true,
             maxAge: 7 * 24 * 60 * 60 * 1000 //7day
         })
 
@@ -57,6 +58,7 @@ module.exports.login = async (req, res) => {
             httpOnly: true,
             domain: 'https://api-kltn.herokuapp.com',
             path: "/user/refresh_token",
+            proxy: true,
             maxAge: 7 * 24 * 60 * 60 * 1000 //7day
         })
         return res.status(200).json({ accesstoken })
