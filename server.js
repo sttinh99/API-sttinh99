@@ -1,9 +1,14 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
-const fileUpload = require('express-fileupload');
 const cookieParser = require('cookie-parser');
+const app = express();
+const cors = require('cors');
+
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }))
+
+const fileUpload = require('express-fileupload');
+
 
 const user = require('./routers/user.router')
 const category = require('./routers/categories.router');
@@ -12,8 +17,6 @@ const product = require('./routers/product.route')
 const checkout = require('./routers/checkout.route')
 const payment = require('./routers/payment.route')
 const discount = require('./routers/discounts.route');
-
-const app = express();
 
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
