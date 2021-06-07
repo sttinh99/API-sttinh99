@@ -31,7 +31,8 @@ module.exports.register = async (req, res) => {
 
         res.cookie('refreshtoken', refreshtoken, {
             httpOnly: true,
-            sameSite: "strict",
+            sameSite: "none",
+            secure: true,
             path: "/user/refresh_token",
             maxAge: 7 * 24 * 60 * 60 * 1000 //7day
         })
@@ -54,9 +55,10 @@ module.exports.login = async (req, res) => {
         const refreshtoken = createRefreshToken({ id: user._id });
         console.log(accesstoken, "=============", refreshtoken);
         res.status(201).cookie('refreshtoken', refreshtoken, {
-            sameSite: "strict",
-            httpOnly: true,
+            sameSite: "none",
+            secure: true,
             path: "/user/refresh_token",
+            httpOnly: true,
             maxAge: 7 * 24 * 60 * 60 * 1000 //7day
         })
         return res.status(200).json({ accesstoken })
