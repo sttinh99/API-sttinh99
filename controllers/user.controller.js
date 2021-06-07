@@ -32,7 +32,6 @@ module.exports.register = async (req, res) => {
         res.cookie('refreshtoken', refreshtoken, {
             httpOnly: true,
             path: "/user/refresh_token",
-            proxy: true,
             maxAge: 7 * 24 * 60 * 60 * 1000 //7day
         })
 
@@ -52,11 +51,10 @@ module.exports.login = async (req, res) => {
         if (!isMatch) return res.status(400).json({ msg: "Wrong password!!!" });
         const accesstoken = createAccessToken({ id: user._id });
         const refreshtoken = createRefreshToken({ id: user._id });
-
+        console.log(accesstoken, "=============", refreshtoken);
         res.cookie('refreshtoken', refreshtoken, {
             httpOnly: true,
             path: "/user/refresh_token",
-            proxy: true,
             maxAge: 7 * 24 * 60 * 60 * 1000 //7day
         })
         return res.status(200).json({ accesstoken })
