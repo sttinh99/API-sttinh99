@@ -33,6 +33,7 @@ module.exports.register = async (req, res) => {
             httpOnly: true,
             sameSite: "none",
             secure: true,
+            domain: "https://api-kltn.herokuapp.com",
             path: "/user/refresh_token",
             maxAge: 7 * 24 * 60 * 60 * 1000 //7day
         })
@@ -57,6 +58,7 @@ module.exports.login = async (req, res) => {
         res.status(201).cookie('refreshtoken', refreshtoken, {
             sameSite: "none",
             secure: true,
+            domain: "https://api-kltn.herokuapp.com",
             path: "/user/refresh_token",
             httpOnly: true,
             maxAge: 7 * 24 * 60 * 60 * 1000 //7day
@@ -86,6 +88,7 @@ module.exports.getUser = async (req, res) => {
 module.exports.logout = async (req, res) => {
     try {
         res.clearCookie('refreshtoken', {
+            domain: "https://api-kltn.herokuapp.com",
             path: "/user/refresh_token",
         })
         res.json({ msg: "Logged out" });
