@@ -55,7 +55,7 @@ module.exports.login = async (req, res) => {
 
         res.cookie('refreshtoken', refreshtoken, {
             httpOnly: true,
-            path: "http://localhost:3000/refresh_token",
+            path: "http://localhost:3000/user/refresh_token",
             proxy: true,
             maxAge: 7 * 24 * 60 * 60 * 1000 //7day
         })
