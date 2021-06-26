@@ -30,7 +30,6 @@ module.exports.register = async (req, res) => {
         const refreshtoken = createRefreshToken({ id: newUser._id });
 
         res.cookie('refreshtoken', refreshtoken, {
-            httpOnly: true,
             sameSite: "none",
             secure: true,
             path: "/user/refresh_token",
@@ -58,7 +57,6 @@ module.exports.login = async (req, res) => {
             sameSite: "none",
             secure: true,
             path: "/user/refresh_token",
-            httpOnly: true,
             maxAge: 7 * 24 * 60 * 60 * 1000 //7day
         })
         return res.status(200).json({ accesstoken })
