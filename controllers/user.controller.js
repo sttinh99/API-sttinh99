@@ -54,7 +54,7 @@ module.exports.login = async (req, res) => {
         const accesstoken = createAccessToken({ id: user._id });
         const refreshtoken = createRefreshToken({ id: user._id });
         console.log(accesstoken, "=============", refreshtoken);
-        res.status(201).cookie('refreshtoken', refreshtoken, {
+        res.status(200).cookie('refreshtoken', refreshtoken, {
             sameSite: "none",
             secure: true,
             path: "/user/refresh_token",
